@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% block extra_css %}
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+{% endblock %} 
+{% block content %}
+    <div class="row-fluid" id="app" v-cloak>
+        <div class="span9 bs-docs-sidebar">
+            <p class="lead">Welcome to the early 90s!</p>
+            <p></p>
+            <p>I am a software developer with more than 6 years of experience. Well versed in OOP architecture, experience in building apps with Amazon Sellingpartner and Amazon Advertising APIS, web scraping with Python</p>
+            <p></p>
+            <hr class="soften">
+            <p></p>
+        </div>
+
+        <div class="span3 bs-docs-sidebar">
+            <h1>Stacks</h1>
+            <ul class="nav nav-list bs-docs-sidenav">
+                <li style="color:black">Python</li>
+                <li style="color:black">Php</li>
+                <li style="color:black">Javascript</li>
+                <li style="color:black">Go</li>
+                <li style="color:black">Celery</li>
+                <li style="color:black">SQLAlchemy</li>
+                <li style="color:black">Redis</li>
+            </ul>
+            <p></p>
+            <h1>Frameworks</h1>
+            <ul class="nav nav-list bs-docs-sidenav">
+                <li style="color:black">VueJS</li>
+                <li style="color:black">ReactJS</li>
+                <li style="color:black">Laravel</li>
+                <li style="color:black">Django</li>
+                <li style="color:black">Hugo</li>
+                <li style="color:black">Flask</li>
+            </ul>
+            <p></p>
+            <h1>Databases</h1>
+            <ul class="nav nav-list bs-docs-sidenav">
+                <li style="color:black">Postgresql</li>
+                <li style="color:black">Mysql</li>
+                <li style="color:black">Mssql</li>
+            </ul>
+            <p></p>
+            <h1>Devops</h1>
+            <ul class="nav nav-list bs-docs-sidenav">
+                <li style="color:black">Docker</li>
+                <li style="color:black">Ansible</li>
+                <li style="color:black">Gitlab ci</li>
+                <li style="color:black">Virtual Box</li>
+                <li style="color:black">Vagrant</li>
+            </ul>
+            <p></p>
+            <h1>OS</h1>
+            <ul class="nav nav-list bs-docs-sidenav">
+                <li style="color:black">Ubuntu </li>
+                <li style="color:black">Windows 10</li>
+            </ul>
+            <p></p>
+            <h1>Cloud Platform</h1>
+            <ul class="nav nav-list bs-docs-sidenav">
+                <li style="color:black">AWS </li>
+                <li style="color:black">Azure </li>
+                <li style="color:black">Heroku</li>
+                <li style="color:black">Digital Ocean</li>
+            </ul>
+            <p></p>
+        </div>
+    </div>
+{% endblock %} 
+{% block extra_js %}
+<script>
+  const { createApp } = Vue;
+  createApp({
+    delimiters: ["[[", "]]"],
+  }).mount("#app");
+</script>
+{% endblock %}
