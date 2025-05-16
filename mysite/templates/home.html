@@ -32,8 +32,11 @@
                   <textarea class="span12" rows="3" v-model="prompt" placeholder="Ask something..." required></textarea>
                 </div>
                 <div class="control-group">
-                  <button class="btn btn-primary" type="submit" v-if="!isSending">Send</button>
-                  <button class="btn btn-primary" type="submit" disabled v-else="isSending">Thinking...</button>
+                  <!-- <button class="btn btn-primary" type="submit" v-if="!isSending" style="cursor: pointer;">Send</button>
+                  <button class="btn btn-primary" type="button" disabled v-else="isSending">Thinking...</button> -->
+                  <button class="btn btn-primary" type="submit" :disabled="isSending" style="cursor: pointer;">
+                    [[ isSending ? 'Thinking...' : 'Send' ]]
+                  </button>
                 </div>
               </form>
             </div>
