@@ -19,6 +19,14 @@
     />
     {% block extra_css %} {% endblock %}
   </head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K8C29Z7Q33"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-K8C29Z7Q33');
+  </script>
   <body>
     {% include 'partials/header.html' %} 
     <div id="content" class="container">
