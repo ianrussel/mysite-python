@@ -1,0 +1,20 @@
+[flake8]
+exclude = __pycache__
+    *migrations
+    lib
+    lib64
+    venv
+    bin
+    usr
+    var
+    .git
+    .tox
+    .eggs
+    .venv
+    .env
+    .idea
+    .pytest_cache
+    .pytest
+    .coverage
+    .hypothesis
+max-line-length = 120

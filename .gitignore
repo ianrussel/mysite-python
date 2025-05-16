@@ -90,3 +90,8 @@ ENV/
 .ropeproject
 
 pyvenv.cfg
+
+Profile.pdf
+share
+etc
+include
