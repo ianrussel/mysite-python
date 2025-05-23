@@ -14,7 +14,6 @@ from mysite.consts import INDEX_NAME
 
 load_dotenv()
 
-
 def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
     embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
     docsearch = PineconeVectorStore(index_name=INDEX_NAME, embedding=embeddings)
