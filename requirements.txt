@@ -24,3 +24,5 @@ langchain-pinecone
 PyMuPDF
 pre-commit
 gunicorn
+flask-cors
+python-dotenv

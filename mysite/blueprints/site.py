@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, render_template, request
-
 from mysite.backend.core import run_llm
+from mysite.cors import require_api_key
 
 site_blueprint = Blueprint("site_blueprint", __name__)
 
@@ -16,7 +16,22 @@ def chat():
     prompt = data.get("prompt", "")
     chat_history = data.get("history", [])
 
-    response = run_llm(query=prompt, chat_history=chat_history)
+    response = run_llm(query=prompt, chat_history=chat_history, index_name='resume-index')
+    return jsonify(
+        {
+            "answer": response["answer"],
+            # "sources": sources_str,
+        }
+    )
+
+@site_blueprint.route("/api/chat2", methods=["POST"])
+@require_api_key
+def chat_2():
+    data = request.json
+    prompt = data.get("prompt", "")
+    chat_history = data.get("history", [])
+
+    response = run_llm(query=prompt, chat_history=chat_history, index_name='timetracking-index')
     return jsonify(
         {
             "answer": response["answer"],
