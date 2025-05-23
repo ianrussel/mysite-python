@@ -1,6 +1,7 @@
 # Standard Library
 
 from flask import Flask
+from flask_cors import CORS
 
 from mysite.blueprints import site
 
@@ -17,3 +18,4 @@ def create_app():
 
 # Instantiate the Flask application by calling create_app
 app = create_app()
+CORS(app=app)

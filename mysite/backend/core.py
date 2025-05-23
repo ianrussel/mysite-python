@@ -14,9 +14,9 @@ from mysite.consts import INDEX_NAME
 
 load_dotenv()
 
-def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
+def run_llm(query: str, chat_history: List[Dict[str, Any]] = [], index_name: str = "resume-index"):
     embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
-    docsearch = PineconeVectorStore(index_name=INDEX_NAME, embedding=embeddings)
+    docsearch = PineconeVectorStore(index_name=index_name, embedding=embeddings)
     chat = ChatOpenAI(verbose=True, temperature=0)
 
     rephrase_prompt = hub.pull("langchain-ai/chat-langchain-rephrase")
