@@ -9,19 +9,22 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
+from langchain.prompts import ChatPromptTemplate
 
 from mysite.consts import INDEX_NAME
 
 load_dotenv()
 
-def run_llm(query: str, chat_history: List[Dict[str, Any]] = [], index_name: str = "resume-index"):
+def run_llm(query: str, chat_history: List[Dict[str, Any]] = [], index_name: str = "resume-index", has_custom_prompt: bool= False):
     embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
     docsearch = PineconeVectorStore(index_name=index_name, embedding=embeddings)
     chat = ChatOpenAI(verbose=True, temperature=0)
 
     rephrase_prompt = hub.pull("langchain-ai/chat-langchain-rephrase")
-
-    retrieval_qa_chat_prompt = hub.pull("langchain-ai/retrieval-qa-chat")
+    if has_custom_prompt:
+        retrieval_qa_chat_prompt = custom_prompt_template()
+    else:
+        retrieval_qa_chat_prompt = hub.pull("langchain-ai/retrieval-qa-chat")
     stuff_documents_chain = create_stuff_documents_chain(chat, retrieval_qa_chat_prompt)
 
     history_aware_retriever = create_history_aware_retriever(
@@ -66,3 +69,14 @@ def run_llm2(query: str, chat_history: List[Dict[str, Any]] = []):
 
     result = chain.invoke({"input": query, "chat_history": chat_history})
     return result
+
+def custom_prompt_template():
+
+    custom_prompt = ChatPromptTemplate.from_messages([
+        ("system", 
+        "You are me, the person being asked. Respond in the first person. "
+        "Do not say things like 'based on the context' or refer to 'the documents'. "
+        "Instead, act like you're answering from your own experience or memory."),
+        ("user", "{input}\n\nContext:\n{context}")
+    ])
+    return custom_prompt
