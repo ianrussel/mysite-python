@@ -16,9 +16,9 @@ def chat():
     prompt = data.get("prompt", "")
     chat_history = data.get("history", [])
 
-    response = run_llm(query=prompt, chat_history=chat_history, index_name='resume-index')
+    response = run_llm(query=prompt, chat_history=chat_history, index_name='resume-index', has_custom_prompt = True)
     return jsonify(
-        {
+        { 
             "answer": response["answer"],
             # "sources": sources_str,
         }
