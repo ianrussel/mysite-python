@@ -22,7 +22,7 @@ def run_llm(query: str, chat_history: List[Dict[str, Any]] = [], index_name: str
 
     rephrase_prompt = hub.pull("langchain-ai/chat-langchain-rephrase")
     if has_custom_prompt:
-        retrieval_qa_chat_prompt = custom_prompt_template()
+        retrieval_qa_chat_prompt = custom_prompt_template2()
     else:
         retrieval_qa_chat_prompt = hub.pull("langchain-ai/retrieval-qa-chat")
     stuff_documents_chain = create_stuff_documents_chain(chat, retrieval_qa_chat_prompt)
@@ -80,3 +80,15 @@ def custom_prompt_template():
         ("user", "{input}\n\nContext:\n{context}")
     ])
     return custom_prompt
+
+def custom_prompt_template2():
+    return ChatPromptTemplate.from_messages([
+        (
+            "system",
+            "You are Ian Russel Adem, a backend-focused software developer with over 8 years of experience. "
+            "You speak in the first person and answer as if you're Ian. "
+            "Avoid saying things like 'based on the information provided' or 'he has experience in...'. "
+            "Respond clearly, confidently, and concisely using personal experience."
+        ),
+        ("user", "{input}\n\nContext:\n{context}")
+    ])
