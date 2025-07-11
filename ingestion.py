@@ -32,10 +32,10 @@ def upload_pdf():
     index = pc.Index(index_name)
     index.upsert([("resume-001", vector, {"text": resume_text})])
 
-    print("✅ Resume vector uploaded successfully.")
+    print(":) Resume vector uploaded successfully.")
 
 def upload_md():
-    md_path = "TimeTrackingDocumentation.md"  # 🔄 Replace with your .md file
+    md_path = "TimeTrackingDocumentation.md"  #  Replace with your .md file
     if not os.path.exists(md_path):
         raise FileNotFoundError(f"File not found: {md_path}")
 
@@ -64,7 +64,7 @@ def upload_md():
     # Upsert into Pinecone
     index.upsert([("timetracking-001", vector, {"filename": md_path, "text": md_text})])
 
-    print("✅ Markdown file vector uploaded successfully.")
+    print(" Markdown file vector uploaded successfully.")
 
 
 if __name__ == "__main__":
